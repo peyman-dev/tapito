@@ -14,11 +14,11 @@ const ArticleCard = () => {
     return (
         <article className='flex relative flex-col gap-4 md:gap-10 w-full md:flex-row md:h-[400px] p-4 border rounded-lg'>
             {/* Image Section */}
-            <div className='w-full flex-center aspect-  video md:h-[350px] md:aspect-auto md:max-w-[40%]'>
+            <div className='w-full flex-center aspect-video md:h-full md:aspect-auto md:max-w-[40%]'>
                 <img
                     src="/images/image1.jpg"
                     alt="Article cover"
-                    className='h-[90%] w-full object-cover rounded-lg'
+                    className='size-full object-cover rounded-lg'
                 />
             </div>
 
