@@ -5,7 +5,7 @@ import UserModel from "@/core/server/models/user"
 import decodeToken from "@/core/server/security/decode-token"
 import generateToken from "@/core/server/security/generate-token"
 import verifyPassword from "@/core/server/security/verify-password"
-import { cookies } from "next/headers"
+import {cookies} from "next/headers"
 
 export const getLogin = async (payload) => {
     try {
@@ -20,8 +20,8 @@ export const getLogin = async (payload) => {
 
         const targetUser = await UserModel.findOne({
             $or: [
-                { email: payload.identifier },
-                { username: payload.identifier }
+                {email: payload.identifier},
+                {username: payload.identifier}
             ]
         })
 
@@ -70,6 +70,32 @@ export const getLogin = async (payload) => {
     }
 }
 
+export const logout = async () => {
+    try {
+        await MakeConnection()
+        const cookiesStore = await cookies()
+
+        try {
+            const token = cookiesStore.get("token").value
+
+            if (!token) return false;
+            return {
+                success: true,
+                message: "User logged out successfully"
+            }
+        } catch (err) {
+            return {
+                success: false,
+                message: 'User not found'
+            }
+        }
+
+
+    } catch (e) {
+
+    }
+}
+
 export const getMe = async () => {
     try {
         MakeConnection()
@@ -84,8 +110,7 @@ export const getMe = async () => {
         }
 
         const payload = decodeToken(token)
-        const user = await UserModel.findOne({ email: payload.email }, "-password").lean()
-
+        const user = await UserModel.findOne({email: payload.email}, "-password").lean()
 
 
         return {
@@ -106,7 +131,8 @@ export const getMe = async () => {
 export const createArticle = async (payload) => {
     try {
         await MakeConnection()
-        
+
+        this
     } catch (error) {
 
     }

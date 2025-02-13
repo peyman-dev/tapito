@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 const MakeConnection = async () => {
     try {
         if (mongoose.connections[0].readyState) {
-            console.log("Mongodb already is connected.")
             return;
         }
 
